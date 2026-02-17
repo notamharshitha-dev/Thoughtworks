@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #u{
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1 id="h1">Score:0/0</h1>
+  <h3 id="sl" style="display: flex;">Score line: 
+    </h3>
+<ul style="list-style: none;display: flex;" id="u"></ul>
+
+   
+    <button onclick="dot(event)" value=".">DOT</button>
+    <button onclick="addScore(event)" value="1">1</button>
+    <button onclick="addScore(event)" value="2">2</button>
+    <button onclick="addScore(event)" value="3" >3</button>
+    <button onclick="addScore(event)" value="4">4</button>
+    <button onclick="addScore(event)" value="5" >5</button>
+    <button onclick="addScore(event)" value="6">6</button>
+    <button onclick="wic(event)" value="1" >W</button>
+    <button onclick="wide(event)" value="1" >Wide</button>
+    <button onclick="noball(event)" value="1">noball</button>
+    <script>  
+        var over=1;    
+        var w=0;
+        var count=0; 
+          
+        function dot(ev){
+            var l=document.createElement('li');
+            l.innerText='.'
+            document.getElementById('u').appendChild(l)
+            over=over+1
+             if(over%6==0){
+            var l=document.createElement('li');
+            l.innerText="|";
+            document.getElementById('u').appendChild(l)
+            
+        }
+        }   
+       function addScore(ev){
+         var a=+ev.target.value;
+         count=count+a;
+        document.getElementById('h1').innerText='Score:'+count+'/'+w
+        var l=document.createElement('li');
+        l.innerText=ev.target.value;
+        document.getElementById('u').appendChild(l)   
+        over=over+1    
+         if(over%6==0){
+            var l=document.createElement('li');
+            l.innerText="|";
+            document.getElementById('u').appendChild(l)            
+        }
+       }
+     
+    function wic(ev){
+            w=w+1
+            document.getElementById('h1').innerText="Score:"+count+'/'+w
+            var l= document.createElement('li');
+            l.innerText='w';
+            document.getElementById('u').appendChild(l)
+            over=over+1
+             if(over%6==0){
+            var l=document.createElement('li');
+            l.innerText="|";
+            document.getElementById('u').appendChild(l)
+            
+        }
+        }
+     function wide(ev){
+        var a=+ev.target.value;
+         count=count+a;
+        document.getElementById('h1').innerText='Score:'+count+'/'+w
+        var l= document.createElement('li');
+        l.innerText='1wd  ';
+        document.getElementById('u').appendChild(l)
+    if(over%6==0){
+            var l=document.createElement('li');
+            l.innerText="|";
+            document.getElementById('u').appendChild(l)
+            
+        }
+     }
+      function noball(ev){
+        var a=+ev.target.value;
+         count=count+a;
+        document.getElementById('h1').innerText='Score:'+count+'/'+w
+        var l=document.createElement("li");
+        l.innerText='1nb';
+        document.getElementById('u').appendChild(l)
+         if(over%6==0){
+            var l=document.createElement('li');
+            l.innerText="|";
+            document.getElementById('u').appendChild(l)
+            
+        }
+      }
+    </script>
+</body>
+</html>
