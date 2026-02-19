@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>TO DO List</h1>
+    <input type="text" id="i">
+    <button onclick="addtodo(event)">Add</button>
+   <ul id="u" style="list-style: none;"></ul>
+    <script>
+      /*  var ar=[]
+       function addtodo(ev){
+            var a=document.getElementById('i').value;
+            var b=document.createElement("li");
+            b.innerText=a;        
+            document.getElementById('u').appendChild(b);
+            var c=document.createElement("button");
+            c.innerText="Delete";
+            c.addEventListener('click',function(){
+                del(b)
+            })
+         b.append(c)
+        }
+      
+   function del(s){
+    s.innerText=''
+   }*/
+  var ar=[];
+  function addtodo(){
+    var x=document.getElementById('i').value;
+    ar.push(x)
+    Ul();
+  }
+  function Ul(){
+    document.getElementById('u').innerText=''
+    ar.forEach(function(a){
+        var l=document.createElement('li');
+        l.innerText=a;
+        document.getElementById('u').appendChild(l)
+        var b=document.createElement("button");
+        b.innerHTML="Delete";
+        b.addEventListener('click',function(){
+          //console.log("Hello")
+            del(a)
+        })
+        l.append(b)
+    })
+  }  
+  function del(a){
+    //console.log(l.value)
+    /*var i=ar.indexOf(l.value)
+    console.log(i)
+    ar.splice(l.value+1,1)
+    console.log("ok")
+    Ul()*/
+    var i=ar.indexOf(a);
+    //console.log(i)
+    ar.splice(i,1)    
+    Ul();
+  }
+</script>
+</body>
+</html>
