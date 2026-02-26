@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <thead id="thead">
+            <th >name</th>
+            <th onclick="fcalsort()">calories</th>
+            <th onclick="fsort()">Cooking Time</th>
+            <th onclick="fsort()">prepartion Time</th>
+            <th onclick="fsort()">Rating</th>
+        </thead>
+        <tbody id="tb">
+
+        </tbody>
+    </table><br><br>
+    <button onclick="prev()" id="p">PREVIOUS</button>
+    <button onclick="next()" id="n">NEXT</button>
+    <script>
+        var s=1;
+        var e=10;       
+         fetch("https://dummyjson.com/recipes").then(function(res){
+            console.log(res);
+            return res.json()
+            }).then(function(data){
+            console.log(data.recipes)
+            var dt=data.recipes;
+       /* var cal=dt.map(function(k){
+        return k.caloriesPerServing
+       })
+        console.log(cal)
+
+        var ct=dt.map(function(k){
+            return k.cookTimeMinutes
+        })
+        console.log(ct)
+
+        var pt=dt.map(function(k){
+            return k.prepTimeMinutes
+        })
+        console.log(pt)
+
+        var r=dt.map(function(k){
+            return k.rating
+        })
+        console.log(r)
+        dt.caloriesPerServing=cal;
+        dt.cookTimeMinutes=ct;
+        dt.*/
+                    dt.slice(s,e).forEach(function(a){
+                var tr=document.createElement('tr');
+                var td=document.createElement('td');
+                td.innerText=a.name;
+                tr.appendChild(td);
+
+                
+                td=document.createElement('td');
+                td.innerText=a.caloriesPerServing
+                tr.appendChild(td)
+
+
+                td=document.createElement('td');
+                td.innerText=a.cookTimeMinutes;
+                
+                tr.appendChild(td)
+                td=document.createElement('td');
+                td.innerText=a.prepTimeMinutes
+                tr.appendChild(td)
+                td=document.createElement('td');
+                td.innerText=a.rating
+                tr.appendChild(td)
+                document.getElementById('tb').appendChild(tr)
+
+            })
+            
+        })
+       
+      
+       //var th=["name","calories","Cooking Time","Prepartion Time","Rating"]
+        function UI(dt){
+            //console.log(s)
+            //console.log(e)
+           /* th.forEach(function(p){
+                var h=document.createElement('th');
+                h.innerText=p;
+                document.getElementById('thead').appendChild(h)
+            })*/
+        
+        }
+       function prev(){
+        s>=0? s=s+10:s=0
+        e<=30?e=e+10:e=0
+        UI()
+       }
+       function next(){
+       s>=0? s=s+10:s=0
+        e<=30?e=e+10:e=0
+        UI()
+       }
+   function fcalsort(){
+       fetch("https://dummyjson.com/recipes").then(function(res){
+          
+            return res.json()
+            }).then(function(data){
+                  var dt=data.recipes.caloriesPerServing
+                  console.log(dt)
+                   //UI(dt)
+   })
+  
+          
+   }
+       
+    </script>
+</body>
+</html>
