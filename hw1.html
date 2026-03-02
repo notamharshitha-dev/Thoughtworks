@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+   .cardOuter{
+    display: flex;
+   flex-wrap: wrap;
+   }
+   .card{
+    list-style: none;
+    background-color: rgb(122, 212, 176);
+    width: 300px;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 20px;
+   }
+</style>
+</head>
+<body>
+    <div id="root"></div>
+    <button onclick="nxt()">Next</button>
+    <button onclick="prev()">Previous</button>
+    <script type="text/babel">
+         var s=0
+        function ui(){
+           
+            fetch('https://dummyjson.com/products?limit=10&skip='+s).then(function(res){
+            return res.json()
+        }).then(function(data){
+            console.log(data.products)
+            var u=<ul class="cardOuter" >{
+                data.products.map(function(a){
+                    return <li class="card">
+                       <h3> <h5>{a.title}</h5>
+                        <h6>{a.description}</h6>
+                        <img src={a.thumbnail} alt=""/> 
+                         </h3> 
+                        
+                        </li>
+                })
+            }
+                </ul>
+            ReactDOM.render(u,document.getElementById('root'))
+        })
+        }
+        ui()
+        function nxt(){
+            s=s+10;
+            ui()
+        }
+        function prev(){
+            s=s-10;
+            ui()
+        }
+    </script>
+</body>
+</html>
